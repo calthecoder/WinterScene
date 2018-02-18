@@ -15,6 +15,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
 import java.awt.Font;
+import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,7 @@ public class WinterScenePanel extends JPanel implements Runnable
 {
 	private AbstractShape[] shapes; 	
 	private AbstractShape sMan;
+        private AbstractShape[] flakes;
         private SnowMan dude;
         private Color backg = new Color(0, 00, 100); // Color white
 	public WinterScenePanel()
@@ -30,14 +32,18 @@ public class WinterScenePanel extends JPanel implements Runnable
 		setVisible(true);
 		//instantiate the array to hold 50 AbstractShape references
 		//populate the array with 50 unique snowflakes
-		
-		//instantiate a snowman
+		flakes = new SnowFlake[50];
+                for(int i = 0; i < flakes.length; i++){
+                    flakes[i]=new SnowFlake();
+                }
+		//instantiate a snowman                
 		sMan = new SnowMan(50,50,50,50);
 		new Thread(this).start();
 	}
 	
 	public void update(Graphics window)
 	{
+            
 		paint(window);	
 	}
 
@@ -52,6 +58,9 @@ public class WinterScenePanel extends JPanel implements Runnable
 		sMan.moveAndDraw(window);
 		//make the snowman appear
 		//make the snowflakes appear and move down the screen
+                for(int i = 0; i < flakes.length; i++){
+                    flakes[i].moveAndDraw(window);
+                }
 		//check to see if any of the snowflakes need to be reset to the top of the screen
 	}
 	

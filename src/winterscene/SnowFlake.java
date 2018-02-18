@@ -17,6 +17,30 @@ import java.awt.Polygon;
 
 
 
-public class SnowFlake {
+public class SnowFlake extends AbstractShape{
+    //private int xPos, yPos;
+
+    public SnowFlake(){
+        super(80, 0, 0, 0, Color.WHITE, 10, 10);
+    }
+    //@Override
+    public void draw(Graphics window) {
+        window.setColor (Color.white);
+        window.fillOval (getXPos(), getYPos(), 10, 10);
+    }
+
+   // @Override
+    public void moveAndDraw(Graphics window) {
+        draw(window);
+        setXPos(getXPos()+getXSpeed());
+        setYPos(getYPos()+getYSpeed());
+        endCheck();
+    }
+    public void endCheck(){
+        if(getYPos()>=600){
+            setXPos(80);
+            setYPos(0);            
+        }
+    }
     
 }
