@@ -24,8 +24,8 @@ public abstract class AbstractShape
 
 	private Color color;
 
-	private int xSpeed;
-	private int ySpeed;
+	private double xSpeed;
+	private double ySpeed;
 
    public AbstractShape(int x, int y, int wid, int ht)
    {
@@ -71,22 +71,22 @@ public abstract class AbstractShape
    	yPos = yp;
    }
    
-   public void setXSpeed( int xs)
+   public void setXSpeed( double xs)
    {
    	xSpeed = xs;
    }
    
-   public void setYSpeed(int ys)
+   public void setYSpeed(double ys)
    {
    	ySpeed = ys;
    }
    
-   public int getYSpeed()
+   public double getYSpeed()
    {
    	return ySpeed;
    }
    
-   public int getXSpeed()
+   public double getXSpeed()
    {
    	return xSpeed;
    }

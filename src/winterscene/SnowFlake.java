@@ -21,8 +21,13 @@ import java.util.Random;
 public class SnowFlake extends AbstractShape{
     //private int xPos, yPos;
     private Random rand = new Random();
+    private double oldxspd,wspd,step;
+    
+    public boolean wflag = false;
     public SnowFlake(int x, int y, int wid, int ht, Color col, int xsp, int ysp){
         super(x, y, wid, ht, col, xsp, ysp);
+        step=.03;
+        oldxspd=getXSpeed();
     }
     
     //@Override
@@ -37,8 +42,10 @@ public class SnowFlake extends AbstractShape{
    // @Override
     public void moveAndDraw(Graphics window) {
         draw(window);
-        setXPos(getXPos()+getXSpeed());
-        setYPos(getYPos()+getYSpeed());
+        int x = (int) getXSpeed();
+        int y = (int) getYSpeed();
+        setXPos(getXPos()+x);
+        setYPos(getYPos()+y);
         //endCheck(window);
     }
     public void endCheck(Graphics window){
@@ -47,7 +54,7 @@ public class SnowFlake extends AbstractShape{
             
             boolean tf = rand.nextBoolean();
             if(tf==true){
-                 setYPos(rand.nextInt(500));
+                 setYPos(rand.nextInt(700));
               setXPos(0); 
             }
             else{
@@ -56,5 +63,26 @@ public class SnowFlake extends AbstractShape{
             }         
         }
     }
-    
+    public void wind(Graphics window){
+        setXSpeed(getXSpeed()+step);
+        wspd = getXSpeed();
+    }
+    public void stopWind(Graphics window){
+       // while(getXSpeed()>oldxspd){
+            setXSpeed(getXSpeed()-step*3);
+            wspd=getXSpeed();
+          //  System.out.println("XSPd in sf"+getXSpeed());
+            if(getXSpeed()<0){
+                wspd=0;
+                wflag=false;
+                //System.out.println("LESS THAN O");
+            }
+       // }
+    }
+    public double getOldXSpd(){
+        return oldxspd;
+    }
+    public double getWspd(){
+        return wspd;
+    }
 }

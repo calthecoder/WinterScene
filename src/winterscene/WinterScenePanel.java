@@ -40,7 +40,7 @@ public class WinterScenePanel extends JPanel implements Runnable
 
             //instantiate the array to hold 50 AbstractShape references
             //populate the array with 50 unique snowflakes
-            flakes = new SnowFlake[150];
+            flakes = new SnowFlake[100];
             for(int i = 0; i < flakes.length; i++){
                 int size =rand.nextInt(8)+1;
                 flakes[i]=new SnowFlake(rand.nextInt(700),
@@ -77,12 +77,32 @@ public class WinterScenePanel extends JPanel implements Runnable
             //be antialiased!!
             tree.moveAndDraw(window); 
             //boolean tf = rand.nextBoolean();//random front/back
-            
+            //wind
+            //WIIIINNDDDD*******************
+            for(int i = 0; i<flakes.length;i++){
+                
+                if(((SnowFlake)flakes[i]).getWspd()==
+                        ((SnowFlake)flakes[i]).getOldXSpd()&&
+                        ((SnowFlake)flakes[i]).wflag==true){
+                    ((SnowFlake)flakes[i]).wflag=false;
+                }
+                else if (((SnowFlake)flakes[i]).wflag==true){
+                    ((SnowFlake)flakes[i]).stopWind(window);
+                }
+                else if(((SnowFlake)flakes[i]).getWspd()<15){
+                    ((SnowFlake)flakes[i]).wind(window);
+                }
+                else if(((SnowFlake)flakes[i]).getWspd()>=15){
+                    ((SnowFlake)flakes[i]).wflag=true;
+                }
+            }
+            //END WINDDDDD************
               sMan.moveAndDraw(window);
                 for(int i = 0; i < flakes.length; i++){
-                flakes[i].moveAndDraw(window);
-                ((SnowFlake)flakes[i]).endCheck(window);
-                }           
+                    flakes[i].moveAndDraw(window);
+                    ((SnowFlake)flakes[i]).endCheck(window);
+                    //((SnowFlake)flakes[i]).wind(window);    
+                }
            // tree.moveAndDraw(window);   
            
             
