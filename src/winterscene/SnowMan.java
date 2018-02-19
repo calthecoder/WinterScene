@@ -26,8 +26,8 @@ public class SnowMan extends AbstractShape{
    public SnowMan(int x, int y, int w, int h )
    {
         super(x, y, w, h, Color.WHITE, 0, 0);
-        setXPos(700);
-        setYPos(400);
+        //setXPos(700);
+        //setYPos(400);
    }
 
    public void draw(Graphics window)
@@ -35,27 +35,22 @@ public class SnowMan extends AbstractShape{
       
        //getXPos() = 700;
        //getYPos() = 400;
-       
-             
-      window.setColor (Color.white);
-      window.fillOval (-40, -40, 80, 80);  // sun
+      Graphics2D g2 = (Graphics2D)window;
+      g2.setStroke(new BasicStroke(3));
 
-      window.setColor (Color.white);
-      window.fillOval (getXPos()-20, getYPos(), 40, 40);      // head
-      window.fillOval (getXPos()-35, getYPos()+35, 70, 70);   // upper torso
-      window.fillOval (getXPos()-50, getYPos()+80, 100, 100);  // lower torso
-
-      window.setColor (Color.black);
-      window.fillOval (getXPos()-10, getYPos()+10, 5, 5);   // left eye
-      window.fillOval (getXPos()+5, getYPos()+10, 5, 5);    // right eye
-
-      window.drawArc (getXPos()-10, getYPos()+20, 20, 10, 190, 160);   // smile
-        window.setColor (Color.white);
-      window.drawLine (getXPos()-25, getYPos()+60, getXPos()-50, getYPos()+40);  // left arm
-      window.drawLine (getXPos()+25, getYPos()+60, getXPos()+55, getYPos()+60);  // right arm
-
-      window.drawLine (getXPos()-20, getYPos()+5, getXPos()+20, getYPos()+5);  // brim of hat
-      window.fillRect (getXPos()-15, getYPos()-20, 30, 25);        // getYPos() of hat
+        g2.setColor (new Color(210,105,30));
+      g2.drawLine (getXPos()-25, getYPos()+60, getXPos()-50, getYPos()+40);  // left arm
+      g2.drawLine (getXPos()+25, getYPos()+60, getXPos()+55, getYPos()+60);  // right arm
+      g2.setColor (Color.white);
+      g2.fillOval (getXPos()-20, getYPos(), 40, 40);      // head
+      g2.fillOval (getXPos()-35, getYPos()+35, 70, 70);   // upper torso
+      g2.fillOval (getXPos()-50, getYPos()+80, 100, 100);  // lower torso       
+        g2.setColor (Color.black);
+        g2.drawArc (getXPos()-10, getYPos()+20, 20, 10, 190, 160);   // smile
+      g2.fillOval (getXPos()-10, getYPos()+10, 5, 5);   // left eye
+      g2.fillOval (getXPos()+5, getYPos()+10, 5, 5);    // right eye
+      g2.drawLine (getXPos()-20, getYPos()+5, getXPos()+20, getYPos()+5);  // brim of hat
+      g2.fillRect (getXPos()-15, getYPos()-20, 30, 25);        // getYPos() of hat
       //add code here to make a snowman 	      	
    }
    

@@ -21,9 +21,10 @@ public class WinterScene extends JFrame
 	{
 		super("THE WINTER SCENE PROJECT");	
 		setSize(WIDTH,HEIGHT);
-				
-		getContentPane().add(new WinterScenePanel());				
-		
+		WinterScenePanel panel = new WinterScenePanel();
+		getContentPane().add(panel);
+                
+		panel.setFocusable(true);
 		setVisible(true);
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
