@@ -12,6 +12,7 @@ package winterscene;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
+import java.util.Random;
 
 //extend the AbstractShape class to make a FancySnowFlake class
 
@@ -19,27 +20,40 @@ import java.awt.Polygon;
 
 public class SnowFlake extends AbstractShape{
     //private int xPos, yPos;
-
-    public SnowFlake(){
-        super(80, 0, 0, 0, Color.WHITE, 10, 10);
+    private Random rand = new Random();
+    public SnowFlake(int x, int y, int wid, int ht, Color col, int xsp, int ysp){
+        super(x, y, wid, ht, col, xsp, ysp);
     }
+    
     //@Override
     public void draw(Graphics window) {
-        window.setColor (Color.white);
-        window.fillOval (getXPos(), getYPos(), 10, 10);
+        window.setColor (getColor());
+        window.fillOval (getXPos(), getYPos(), getWidth(), getHeight());
     }
-
+    public void accDraw(Graphics window, int x, int y){
+        window.setColor (Color.white);
+        window.fillOval (x, y, 10, 10);
+    }
    // @Override
     public void moveAndDraw(Graphics window) {
         draw(window);
         setXPos(getXPos()+getXSpeed());
         setYPos(getYPos()+getYSpeed());
-        endCheck();
+        //endCheck(window);
     }
-    public void endCheck(){
-        if(getYPos()>=600){
-            setXPos(80);
-            setYPos(0);            
+    public void endCheck(Graphics window){
+        if(getYPos()>=600||getXPos()>=800){
+            //and accumulate
+            
+            boolean tf = rand.nextBoolean();
+            if(tf==true){
+                 setYPos(rand.nextInt(500));
+              setXPos(0); 
+            }
+            else{
+               setXPos(rand.nextInt(700));
+              setYPos(0);  
+            }         
         }
     }
     
