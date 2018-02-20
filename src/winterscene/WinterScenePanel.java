@@ -28,7 +28,7 @@ public class WinterScenePanel extends JPanel implements Runnable
 {
 	private AbstractShape[] shapes; 	
 	private AbstractShape sMan;
-        private AbstractShape[] flakes;
+        private AbstractShape[] sflakes,bflakes;
         private AbstractShape tree,ground;
         private Color backg = new Color(0, 00, 100); // Color white
         private Color tq = new Color(205,133,63);//tree color
@@ -40,10 +40,22 @@ public class WinterScenePanel extends JPanel implements Runnable
 
             //instantiate the array to hold 50 AbstractShape references
             //populate the array with 50 unique snowflakes
-            flakes = new SnowFlake[100];
-            for(int i = 0; i < flakes.length; i++){
-                int size =rand.nextInt(8)+1;
-                flakes[i]=new SnowFlake(rand.nextInt(700),
+            sflakes = new SnowFlake[75];
+            bflakes = new SnowFlake[71];
+            for(int i = 0; i < sflakes.length; i++){
+                int size =rand.nextInt(4)+1;
+                sflakes[i]=new SnowFlake(rand.nextInt(700),
+                0,
+                size,
+                size,
+                Color.white,
+                rand.nextInt(20)+1,
+                rand.nextInt(20)+1);
+
+            }
+            for(int i = 0; i < bflakes.length; i++){
+                int size =rand.nextInt(5)+4;
+                bflakes[i]=new SnowFlake(rand.nextInt(700),
                 0,
                 size,
                 size,
@@ -75,34 +87,59 @@ public class WinterScenePanel extends JPanel implements Runnable
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
                 RenderingHints.VALUE_ANTIALIAS_ON); //anything that uses g2 will
             //be antialiased!!
-            tree.moveAndDraw(window); 
+            
             //boolean tf = rand.nextBoolean();//random front/back
             //wind
             //WIIIINNDDDD*******************
-            for(int i = 0; i<flakes.length;i++){
-                
-                if(((SnowFlake)flakes[i]).getWspd()==
-                        ((SnowFlake)flakes[i]).getOldXSpd()&&
-                        ((SnowFlake)flakes[i]).wflag==true){
-                    ((SnowFlake)flakes[i]).wflag=false;
-                }
-                else if (((SnowFlake)flakes[i]).wflag==true){
-                    ((SnowFlake)flakes[i]).stopWind(window);
-                }
-                else if(((SnowFlake)flakes[i]).getWspd()<15){
-                    ((SnowFlake)flakes[i]).wind(window);
-                }
-                else if(((SnowFlake)flakes[i]).getWspd()>=15){
-                    ((SnowFlake)flakes[i]).wflag=true;
-                }
-            }
-            //END WINDDDDD************
-              sMan.moveAndDraw(window);
-                for(int i = 0; i < flakes.length; i++){
-                    flakes[i].moveAndDraw(window);
-                    ((SnowFlake)flakes[i]).endCheck(window);
+            sMan.moveAndDraw(window);
+                for(int i = 0; i < sflakes.length; i++){
+                    sflakes[i].moveAndDraw(window);
+                    ((SnowFlake)sflakes[i]).endCheck(window);
                     //((SnowFlake)flakes[i]).wind(window);    
                 }
+            for(int r = 0; r<sflakes.length;r++){
+                
+                if(((SnowFlake)sflakes[r]).getWspd()==
+                        ((SnowFlake)sflakes[r]).getOldXSpd()&&
+                        ((SnowFlake)sflakes[r]).wflag==true){
+                    ((SnowFlake)sflakes[r]).wflag=false;
+                }
+                else if (((SnowFlake)sflakes[r]).wflag==true){
+                    ((SnowFlake)sflakes[r]).stopWind(window);
+                }
+                else if(((SnowFlake)sflakes[r]).getWspd()<15){
+                    ((SnowFlake)sflakes[r]).wind(window);
+                }
+                else if(((SnowFlake)sflakes[r]).getWspd()>=15){
+                    ((SnowFlake)sflakes[r]).wflag=true;
+                }
+            }
+            tree.moveAndDraw(window); 
+            for(int r = 0; r<bflakes.length;r++){
+                
+                if(((SnowFlake)bflakes[r]).getWspd()==
+                        ((SnowFlake)bflakes[r]).getOldXSpd()&&
+                        ((SnowFlake)bflakes[r]).wflag==true){
+                    ((SnowFlake)bflakes[r]).wflag=false;
+                }
+                else if (((SnowFlake)bflakes[r]).wflag==true){
+                    ((SnowFlake)bflakes[r]).stopWind(window);
+                }
+                else if(((SnowFlake)bflakes[r]).getWspd()<15){
+                    ((SnowFlake)bflakes[r]).wind(window);
+                }
+                else if(((SnowFlake)bflakes[r]).getWspd()>=15){
+                    ((SnowFlake)bflakes[r]).wflag=true;
+                }
+            }
+                for(int i = 0; i < bflakes.length; i++){
+                    bflakes[i].moveAndDraw(window);
+                    ((SnowFlake)bflakes[i]).endCheck(window);
+                    //((SnowFlake)flakes[i]).wind(window);    
+                }
+            //END WINDDDDD************
+            
+            
            // tree.moveAndDraw(window);   
            
             

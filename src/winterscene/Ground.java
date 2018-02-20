@@ -19,7 +19,7 @@ public class Ground extends AbstractShape{
     public Ground(int x, int y, int wid, int ht, Color col){
         super(x, y, wid, ht, col, 1,1);
         ct=0;
-        cflag=150;
+        cflag=100;
     }
     public void draw(Graphics window) {
         Graphics2D g2 = (Graphics2D)window;
