@@ -11,7 +11,7 @@ import java.awt.event.*;
 import javax.swing.*;
 /**
  *
- * @author calvi
+ * @author calvin Kinateder
  */
 public class SManMover implements KeyListener{
 

@@ -13,7 +13,7 @@ import java.awt.RenderingHints;
 
 /**
  *
- * @author calvi
+ * @author calvin Kinateder
  */
 public class Tree extends AbstractShape{
 

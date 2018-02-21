@@ -11,7 +11,7 @@ import javax.swing.BoxLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+//by calvin Kinateder
 public class WinterScene extends JFrame
 {
 	private static final int WIDTH = 800;

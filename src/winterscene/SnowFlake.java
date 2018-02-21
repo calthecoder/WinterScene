@@ -7,7 +7,7 @@ package winterscene;
 
 /**
  *
- * @author calvi
+ * @author calvin Kinateder
  */
 import java.awt.Color;
 import java.awt.Graphics;

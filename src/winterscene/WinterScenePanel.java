@@ -5,7 +5,7 @@
  */
 package winterscene;
 //© A+ Computer Science  -  www.apluscompsci.com
-//Name -
+//Name - calvin Kinateder
 //Date -
 //Class -
 //Lab  -
@@ -33,6 +33,9 @@ public class WinterScenePanel extends JPanel implements Runnable
         private Color backg = new Color(0, 00, 100); // Color white
         private Color tq = new Color(205,133,63);//tree color
         private Random rand = new Random();
+        private int maxInitSpeed = 5;
+        private int maxWspd = 12;
+        private Mountains mountains;
         private ArrayList<AbstractShape> acu = new ArrayList<AbstractShape>();
 	public WinterScenePanel()
 	{
@@ -45,23 +48,23 @@ public class WinterScenePanel extends JPanel implements Runnable
             for(int i = 0; i < sflakes.length; i++){
                 int size =rand.nextInt(4)+1;
                 sflakes[i]=new SnowFlake(rand.nextInt(700),
-                0,
+                rand.nextInt(500),
                 size,
                 size,
                 Color.white,
-                rand.nextInt(20)+1,
-                rand.nextInt(20)+1);
+                rand.nextInt(maxInitSpeed)+1,
+                rand.nextInt(maxInitSpeed)+1);
 
             }
             for(int i = 0; i < bflakes.length; i++){
                 int size =rand.nextInt(5)+4;
                 bflakes[i]=new SnowFlake(rand.nextInt(700),
-                0,
+                rand.nextInt(500),
                 size,
                 size,
                 Color.white,
-                rand.nextInt(20)+1,
-                rand.nextInt(20)+1);
+                rand.nextInt(maxInitSpeed)+1,
+                rand.nextInt(maxInitSpeed)+1);
 
             }
             
@@ -69,6 +72,7 @@ public class WinterScenePanel extends JPanel implements Runnable
             sMan = new SnowMan(700,370,50,50);
             tree = new Tree(150,300,50,300,tq);
             ground = new Ground(00,540,800,8000,Color.white);
+            //mountains = new Mountains(50,530,50,50,new Color(100,80,100));
             //smm = new SManMover();
             //smm.setFocusable(true);
             new Thread(this).start();
@@ -91,6 +95,7 @@ public class WinterScenePanel extends JPanel implements Runnable
             //boolean tf = rand.nextBoolean();//random front/back
             //wind
             //WIIIINNDDDD*******************
+           // mountains.moveAndDraw(window);
             sMan.moveAndDraw(window);
                 for(int i = 0; i < sflakes.length; i++){
                     sflakes[i].moveAndDraw(window);
@@ -107,10 +112,10 @@ public class WinterScenePanel extends JPanel implements Runnable
                 else if (((SnowFlake)sflakes[r]).wflag==true){
                     ((SnowFlake)sflakes[r]).stopWind(window);
                 }
-                else if(((SnowFlake)sflakes[r]).getWspd()<15){
+                else if(((SnowFlake)sflakes[r]).getWspd()<maxWspd){
                     ((SnowFlake)sflakes[r]).wind(window);
                 }
-                else if(((SnowFlake)sflakes[r]).getWspd()>=15){
+                else if(((SnowFlake)sflakes[r]).getWspd()>=maxWspd){
                     ((SnowFlake)sflakes[r]).wflag=true;
                 }
             }
@@ -125,10 +130,10 @@ public class WinterScenePanel extends JPanel implements Runnable
                 else if (((SnowFlake)bflakes[r]).wflag==true){
                     ((SnowFlake)bflakes[r]).stopWind(window);
                 }
-                else if(((SnowFlake)bflakes[r]).getWspd()<15){
+                else if(((SnowFlake)bflakes[r]).getWspd()<maxWspd){
                     ((SnowFlake)bflakes[r]).wind(window);
                 }
-                else if(((SnowFlake)bflakes[r]).getWspd()>=15){
+                else if(((SnowFlake)bflakes[r]).getWspd()>=maxWspd){
                     ((SnowFlake)bflakes[r]).wflag=true;
                 }
             }
@@ -144,6 +149,7 @@ public class WinterScenePanel extends JPanel implements Runnable
            
             
             ground.moveAndDraw(window);
+            
             //make the snowman appear
             //make the snowflakes appear and move down the screen
             
